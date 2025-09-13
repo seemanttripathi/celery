@@ -14,5 +14,6 @@ app.conf.broker_transport_options = {
     'queue_order_strategy': 'priority',
     'separator': ':',
 }
+app.conf.task_default_rate_limit = '2/m'
 # Auto-discover tasks from all installed Django apps
 app.autodiscover_tasks()
