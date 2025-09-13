@@ -26,7 +26,7 @@ services:
     container_name: celery
     build:
       context: ./djangoprojcelery 
-    command: celery -A djangoprojcelery worker --loglevel=info
+    command: celery -A djangoprojcelery worker --loglevel=info -Q queue1
     volumes:
       - ./djangoprojcelery:/usr/src/app
     environment:
@@ -43,7 +43,7 @@ services:
     build:
       context: ./celeryworkerstandalone
       dockerfile: ./Dockerfile
-    command: celery -A celerytask worker --loglevel=info
+    command: celery -A celerytask worker --loglevel=info -Q queue2
     volumes:
       - ./celeryworkerstandalone:/usr/src/app/
     depends_on:

@@ -14,3 +14,7 @@ docker exec -it django /bin/sh
 
 from celeryworker.tasks import sharedtask
 sharedtask.delay()
+
+from celeryworker.tasks import task1, task2
+task1.delay()
+task2.delay()
