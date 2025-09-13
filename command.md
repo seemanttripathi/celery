@@ -56,3 +56,11 @@ from celery import chain
 from celeryworker.tasks import tp1, tp2, tp3, tp4
 task_chain = chain(tp1.s(), tp2.s(), tp3.s())
 task_chain.apply_async()
+
+from djangoprojcelery.celery import t1, t2, t3
+t2.apply_async(priority=5)
+t1.apply_async(priority=6)
+t3.apply_async(priority=9)
+t2.apply_async(priority=5)
+t1.apply_async(priority=6)
+t3.apply_async(priority=9)
