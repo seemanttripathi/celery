@@ -44,7 +44,15 @@ tp2.delay()
 tp4.delay()
 tp4.delay()
 
+docker exec -it django /bin/sh
+./manage.py shell
+
 from celery import group
 from celeryworker.tasks import tp1, tp2, tp3, tp4
 task_group = group(tp1.s(), tp2.s(), tp3.s(), tp4.s())
 task_group.apply_async()
+
+from celery import chain
+from celeryworker.tasks import tp1, tp2, tp3, tp4
+task_chain = chain(tp1.s(), tp2.s(), tp3.s())
+task_chain.apply_async()
