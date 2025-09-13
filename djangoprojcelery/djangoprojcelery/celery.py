@@ -34,6 +34,13 @@ def t3():
     time.sleep(3)
     return True
 
+@app.task(queue='tasks')
+def t4(a, b, message=None):
+    result = a + b
+    if message:
+        result = f"{message}: {result}"
+    return result
+
 # app.conf.task_routes = {
 #     'celeryworker.tasks.*': {'queue': 'queue1'},
 #     'celeryworker.tasks.task2': {'queue': 'queue2'},

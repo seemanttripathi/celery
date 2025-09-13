@@ -64,3 +64,7 @@ t3.apply_async(priority=9)
 t2.apply_async(priority=5)
 t1.apply_async(priority=6)
 t3.apply_async(priority=9)
+
+from djangoprojcelery.celery import t4
+result = t4.apply_async(args=[10, 15], kwargs={"message":"The Sum is"})
+print(result.get())
