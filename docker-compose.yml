@@ -36,3 +36,16 @@ services:
       - REDIS_URL=redis://redis:6379/0
     depends_on:
       - redis
+      - django
+  
+  celery2:
+    container_name: celery2
+    build:
+      context: ./celeryworkerstandalone
+      dockerfile: ./Dockerfile
+    command: celery -A celerytask worker --loglevel=info
+    volumes:
+      - ./celeryworkerstandalone:/usr/src/app/
+    depends_on:
+      - redis
+      - django
