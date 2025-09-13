@@ -21,3 +21,17 @@ services:
       - REDIS_URL=redis://redis:6379/0
     depends_on:
       - redis
+
+  celery:
+    container_name: celery
+    build:
+      context: ./djangoprojcelery 
+    volumes:
+      - ./djangoprojcelery:/usr/src/app
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=duhdenwnei
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+      - REDIS_URL=redis://redis:6379/0
+    depends_on:
+      - redis
