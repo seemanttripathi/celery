@@ -26,6 +26,7 @@ services:
     container_name: celery
     build:
       context: ./djangoprojcelery 
+    command: celery -A djangoprojcelery worker --loglevel=info
     volumes:
       - ./djangoprojcelery:/usr/src/app
     environment:
